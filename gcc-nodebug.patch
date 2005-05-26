@@ -1,6 +1,6 @@
---- gcc-4.0-20040919/gcc/Makefile.in.orig	2004-09-18 03:07:21.000000000 +0200
-+++ gcc-4.0-20040919/gcc/Makefile.in	2004-09-26 11:38:24.071049304 +0200
-@@ -141,10 +141,10 @@
+--- gcc-4.1-20050522/gcc/Makefile.in.orig	2005-05-20 21:17:40.000000000 +0000
++++ gcc-4.1-20050522/gcc/Makefile.in	2005-05-26 10:49:01.000000000 +0000
+@@ -148,10 +148,10 @@
  # TCFLAGS is used for compilations with the GCC just built.
  XCFLAGS =
  TCFLAGS =
@@ -14,15 +14,15 @@
  
  # Flags to determine code coverage. When coverage is disabled, this will
  # contain the optimization flags, as you normally want code coverage
-@@ -511,7 +511,7 @@
+@@ -520,7 +520,7 @@
  
  # Options to use when compiling libgcc2.a.
  #
 -LIBGCC2_DEBUG_CFLAGS = -g
 +LIBGCC2_DEBUG_CFLAGS =
- LIBGCC2_CFLAGS = -O2 $(LIBGCC2_INCLUDES) $(GCC_CFLAGS) $(TARGET_LIBGCC2_CFLAGS) $(LIBGCC2_DEBUG_CFLAGS) $(GTHREAD_FLAGS) -DIN_LIBGCC2 -D__GCC_FLOAT_NOT_NEEDED @inhibit_libc@
- 
- # Additional options to use when compiling libgcc2.a.
+ LIBGCC2_CFLAGS = -O2 $(LIBGCC2_INCLUDES) $(GCC_CFLAGS) $(TARGET_LIBGCC2_CFLAGS) \
+ 		 $(LIBGCC2_DEBUG_CFLAGS) $(GTHREAD_FLAGS) \
+ 		 -DIN_LIBGCC2 -D__GCC_FLOAT_NOT_NEEDED @inhibit_libc@
 --- gcc-4.0-20040919/gcc/ada/Makefile.in.orig	2004-09-13 12:18:40.000000000 +0200
 +++ gcc-4.0-20040919/gcc/ada/Makefile.in	2004-09-26 11:40:30.070894416 +0200
 @@ -73,7 +73,7 @@
