@@ -46,6 +46,17 @@
  GNATLIBCFLAGS_FOR_C = $(GNATLIBCFLAGS) $(TARGET_LIBGCC2_CFLAGS) -fexceptions \
  	-DIN_RTS
  ALL_ADA_CFLAGS = $(X_ADA_CFLAGS) $(T_ADA_CFLAGS) $(ADA_CFLAGS)
+--- gcc/libada/Makefile.in.orig	2005-11-04 13:49:08.000000000 +0000
++++ gcc/libada/Makefile.in	2005-11-24 23:52:14.739531296 +0000
+@@ -54,7 +54,7 @@
+ include $(GCC_DIR)/libada-mk
+ 
+ TARGET_LIBGCC2_CFLAGS=
+-GNATLIBCFLAGS= -g -O2
++GNATLIBCFLAGS= -O2
+ # Get target-specific overrides for TARGET_LIBGCC2_CFLAGS
+ # and possibly GNATLIBCFLAGS.  Currently this uses files
+ # in gcc/config.  The 'subst' call is used to rerelativize them
 --- gcc-4.0-20040919/libffi/Makefile.am.orig	2004-08-30 17:42:59.000000000 +0200
 +++ gcc-4.0-20040919/libffi/Makefile.am	2004-09-26 11:44:10.789340112 +0200
 @@ -138,7 +138,7 @@
