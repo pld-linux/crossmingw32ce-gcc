@@ -1,11 +1,8 @@
---- trunk/gcc/Makefile.in.orig	2006-03-22 00:17:58.000000000 +0100
-+++ trunk/gcc/Makefile.in	2006-03-22 01:25:39.000000000 +0100
-@@ -149,11 +149,11 @@
- # TCFLAGS is used for compilations with the GCC just built.
- XCFLAGS =
+--- trunk/gcc/Makefile.in.orig	2006-07-02 15:31:20.000000000 +0200
++++ trunk/gcc/Makefile.in	2006-07-02 20:55:33.573762250 +0200
+@@ -151,9 +151,9 @@
  TCFLAGS =
--CFLAGS = -g
-+CFLAGS =
+ CFLAGS = @CFLAGS@
  LDFLAGS = @LDFLAGS@
 -STAGE1_CFLAGS = -g @stage1_cflags@
 +STAGE1_CFLAGS = @stage1_cflags@
@@ -15,7 +12,7 @@
  
  # Flags to determine code coverage. When coverage is disabled, this will
  # contain the optimization flags, as you normally want code coverage
-@@ -540,7 +540,7 @@
+@@ -547,7 +547,7 @@
  
  # Options to use when compiling libgcc2.a.
  #
