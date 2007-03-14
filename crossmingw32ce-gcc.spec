@@ -2,12 +2,12 @@
 # Conditional build:
 %bcond_with	bootstrap	# bootstrap build (using binary w32api/mingw)
 #
-Summary:	Cross Mingw32 GNU binary utility development utilities - gcc
-Summary(es.UTF-8):	Utilitarios para desarrollo de binarios de la GNU - Mingw32 gcc
-Summary(fr.UTF-8):	Utilitaires de développement binaire de GNU - Mingw32 gcc
-Summary(pl.UTF-8):	Skrośne narzędzia programistyczne GNU dla Mingw32 - gcc
-Summary(pt_BR.UTF-8):	Utilitários para desenvolvimento de binários da GNU - Mingw32 gcc
-Summary(tr.UTF-8):	GNU geliştirme araçları - Mingw32 gcc
+Summary:	Cross Mingw32CE GNU binary utility development utilities - gcc
+Summary(es.UTF-8):	Utilitarios para desarrollo de binarios de la GNU - Mingw32CE gcc
+Summary(fr.UTF-8):	Utilitaires de développement binaire de GNU - Mingw32CE gcc
+Summary(pl.UTF-8):	Skrośne narzędzia programistyczne GNU dla Mingw32CE - gcc
+Summary(pt_BR.UTF-8):	Utilitários para desenvolvimento de binários da GNU - Mingw32CE gcc
+Summary(tr.UTF-8):	GNU geliştirme araçları - Mingw32CE gcc
 Name:		crossmingw32ce-gcc
 Version:	4.1.0
 Release:	0.1
@@ -51,10 +51,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		filterout_cxx	-march=.*
 
 %description
-crossmingw32 is a complete cross-compiling development system for
+crossmingw32ce is a complete cross-compiling development system for
 building stand-alone Microsoft Windows applications under Linux using
-the Mingw32 build libraries. This includes a binutils, gcc with g++
-and objc, and libstdc++, all cross targeted to i386-mingw32, along
+the Mingw32CE build libraries. This includes a binutils, gcc with g++
+and objc, and libstdc++, all cross targeted to i386-mingw32ce, along
 with supporting Win32 libraries in 'coff' format from free sources.
 
 This package contains cross targeted gcc.
@@ -64,35 +64,35 @@ Dieses Paket enthält einen Cross-gcc, der es erlaubt, auf einem
 anderem Rechner Code für Win32 zu generieren.
 
 %description -l pl.UTF-8
-crossmingw32 jest kompletnym systemem do kompilacji skrośnej,
+crossmingw32ce jest kompletnym systemem do kompilacji skrośnej,
 pozwalającym budować aplikacje MS Windows pod Linuksem używając
-bibliotek Mingw32. System składa się z binutils, gcc z g++ i objc,
-libstdc++ - wszystkie generujące kod dla platformy i386-mingw32, oraz
-z bibliotek w formacie COFF.
+bibliotek Mingw32CE. System składa się z binutils, gcc z g++ i objc,
+libstdc++ - wszystkie generujące kod dla platformy i386-mingw32ce,
+oraz z bibliotek w formacie COFF.
 
 Ten pakiet zawiera gcc generujące skrośnie kod dla Win32.
 
 %package c++
-Summary:	Mingw32 binary utility development utilities - g++
-Summary(pl.UTF-8):	Zestaw narzędzi mingw32 - g++
+Summary:	Mingw32CE binary utility development utilities - g++
+Summary(pl.UTF-8):	Zestaw narzędzi mingw32ce - g++
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
 %description c++
-crossmingw32 is a complete cross-compiling development system for
+crossmingw32ce is a complete cross-compiling development system for
 building stand-alone Microsoft Windows applications under Linux using
-the Mingw32 build libraries. This includes a binutils, gcc with g++
-and objc, and libstdc++, all cross targeted to i386-mingw32, along
+the Mingw32CE build libraries. This includes a binutils, gcc with g++
+and objc, and libstdc++, all cross targeted to i386-mingw32ce, along
 with supporting Win32 libraries in 'coff' format from free sources.
 
 This package contains cross targeted g++ and (static) libstdc++.
 
 %description c++ -l pl.UTF-8
-crossmingw32 jest kompletnym systemem do kompilacji skrośnej,
+crossmingw32ce jest kompletnym systemem do kompilacji skrośnej,
 pozwalającym budować aplikacje MS Windows pod Linuksem używając
-bibliotek mingw32. System składa się z binutils, gcc z g++ i objc,
-libstdc++ - wszystkie generujące kod dla platformy i386-mingw32, oraz
-z bibliotek w formacie COFF.
+bibliotek mingw32ce. System składa się z binutils, gcc z g++ i objc,
+libstdc++ - wszystkie generujące kod dla platformy i386-mingw32ce,
+oraz z bibliotek w formacie COFF.
 
 Ten pakiet zawiera g++ generujące kod pod Win32 oraz bibliotekę
 libstdc++.
