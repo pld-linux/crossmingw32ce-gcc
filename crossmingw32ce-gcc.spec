@@ -18,7 +18,7 @@ Group:		Development/Languages
 Source0:	gcc-20070227.909.tar.bz2
 # Source0-md5:	ece53d2ea4d055f48d4f819922332d21
 Patch0:		gcc-nodebug.patch
-#Patch1:	crossmingw32-gcc-noioctl.patch
+Patch1:		%{name}-bug25672.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
@@ -32,7 +32,6 @@ BuildRequires:	cegcc
 BuildRequires:	crossmingw32ce-runtime >= 3.5
 BuildRequires:	crossmingw32ce-w32api >= 3.1
 %endif
-#BuildRequires:	mpfr-devel
 Requires:	crossmingw32ce-binutils >= 2.15.91.0.2-2
 Requires:	gcc-dirs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -104,7 +103,7 @@ install -d winsup/w32api
 ln -s /usr/ppc/%{target}/include/w32api winsup/w32api/include
 %endif
 #{!?debug:%patch0 -p1}
-#%patch1 -p1
+%patch1 -p0
 
 %build
 %if %{with bootstrap}
@@ -112,8 +111,10 @@ ln -s /usr/ppc/%{target}/include/w32api winsup/w32api/include
 #	ln -sf %{arch}/bin/$tool winsup/bin/$tool
 #done
 build_tooldir=`pwd`/winsup
+includedir=/usr/ppc/%{target}/include
 %else
 build_tooldir=%{arch}
+includedir=/usr/%{target}/include
 %endif
 
 cp /usr/share/automake/config.sub .
@@ -143,7 +144,7 @@ TEXCONFIG=false \
 	--bindir=%{arch}/bin \
 	--libdir=%{_libdir} \
 	--libexecdir=%{_libexecdir} \
-	--includedir=%{arch}/include \
+	--includedir=$includedir \
 	--disable-shared \
 	--enable-threads \
 	--enable-languages="c,c++" \
