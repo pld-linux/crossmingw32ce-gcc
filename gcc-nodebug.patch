@@ -1,18 +1,17 @@
---- trunk/gcc/Makefile.in.orig	2006-07-02 15:31:20.000000000 +0200
-+++ trunk/gcc/Makefile.in	2006-07-02 20:55:33.573762250 +0200
-@@ -151,9 +151,9 @@
- TCFLAGS =
- CFLAGS = @CFLAGS@
- LDFLAGS = @LDFLAGS@
--STAGE1_CFLAGS = -g @stage1_cflags@
-+STAGE1_CFLAGS = @stage1_cflags@
- STAGE1_CHECKING_CFLAGS = -DENABLE_CHECKING -DENABLE_ASSERT_CHECKING
--BOOT_CFLAGS = -g -O2
-+BOOT_CFLAGS = -O2
+--- a/Makefile.in	2006-07-02 15:31:20.000000000 +0200
++++ b/Makefile.in	2006-07-02 20:55:33.573762250 +0200
+@@ -274,7 +274,7 @@
  
- # Flags to determine code coverage. When coverage is disabled, this will
- # contain the optimization flags, as you normally want code coverage
-@@ -547,7 +547,7 @@
+ # Flags to pass to stage2 and later makes.  They are defined
+ # here so that they can be overridden by Makefile fragments.
+-BOOT_CFLAGS= -g -O2
++BOOT_CFLAGS= -O2
+ BOOT_LDFLAGS=
+ 
+ BISON = @BISON@
+--- a/gcc/Makefile.in	2008-02-25 15:53:34.000000000 +0100
++++ b/gcc/Makefile.in	2008-03-03 16:42:29.000000000 +0100
+@@ -560,7 +560,7 @@
  
  # Options to use when compiling libgcc2.a.
  #
@@ -21,8 +20,8 @@
  LIBGCC2_CFLAGS = -O2 $(LIBGCC2_INCLUDES) $(GCC_CFLAGS) $(TARGET_LIBGCC2_CFLAGS) \
  		 $(LIBGCC2_DEBUG_CFLAGS) $(GTHREAD_FLAGS) \
  		 -DIN_LIBGCC2 -D__GCC_FLOAT_NOT_NEEDED \
---- gcc-4.0-20040919/gcc/ada/Makefile.in.orig	2004-09-13 12:18:40.000000000 +0200
-+++ gcc-4.0-20040919/gcc/ada/Makefile.in	2004-09-26 11:40:30.070894416 +0200
+--- a/gcc/ada/Makefile.in	2004-09-13 12:18:40.000000000 +0200
++++ b/gcc/ada/Makefile.in	2004-09-26 11:40:30.070894416 +0200
 @@ -73,7 +73,7 @@
  # to the stage2 and stage3 compilations
  # XCFLAGS is used for most compilations but not when using the GCC just built.
@@ -44,8 +43,8 @@
  GNATLIBCFLAGS_FOR_C = $(GNATLIBCFLAGS) $(TARGET_LIBGCC2_CFLAGS) -fexceptions \
  	-DIN_RTS
  ALL_ADA_CFLAGS = $(X_ADA_CFLAGS) $(T_ADA_CFLAGS) $(ADA_CFLAGS)
---- gcc/libada/Makefile.in.orig	2005-11-04 13:49:08.000000000 +0000
-+++ gcc/libada/Makefile.in	2005-11-24 23:52:14.739531296 +0000
+--- a/libada/Makefile.in	2005-11-04 13:49:08.000000000 +0000
++++ b/libada/Makefile.in	2005-11-24 23:52:14.739531296 +0000
 @@ -54,7 +54,6 @@
  include $(GCC_DIR)/libada-mk
  
@@ -54,8 +53,8 @@
  # Get target-specific overrides for TARGET_LIBGCC2_CFLAGS
  # and possibly GNATLIBCFLAGS.  Currently this uses files
  # in gcc/config.  The 'subst' call is used to rerelativize them
---- gcc-4.0-20040919/libffi/Makefile.am.orig	2004-08-30 17:42:59.000000000 +0200
-+++ gcc-4.0-20040919/libffi/Makefile.am	2004-09-26 11:44:10.789340112 +0200
+--- a/libffi/Makefile.am	2004-08-30 17:42:59.000000000 +0200
++++ b/libffi/Makefile.am	2004-09-26 11:44:10.789340112 +0200
 @@ -138,7 +138,7 @@
  libffi_convenience_la_SOURCES = $(libffi_la_SOURCES)
  nodist_libffi_convenience_la_SOURCES = $(nodist_libffi_la_SOURCES)
@@ -65,8 +64,8 @@
  
  libffi_la_LDFLAGS = -version-info `grep -v '^\#' $(srcdir)/libtool-version`
  
---- gcc-4.0-20040919/libffi/Makefile.in.orig	2004-09-19 19:47:04.000000000 +0200
-+++ gcc-4.0-20040919/libffi/Makefile.in	2004-09-26 11:44:17.253357432 +0200
+--- a/libffi/Makefile.in	2004-09-19 19:47:04.000000000 +0200
++++ b/libffi/Makefile.in	2004-09-26 11:44:17.253357432 +0200
 @@ -385,7 +385,7 @@
  nodist_libffi_la_SOURCES = $(am__append_1) $(am__append_2) $(am__append_3) $(am__append_4) $(am__append_5) $(am__append_6) $(am__append_7) $(am__append_8) $(am__append_9) $(am__append_10) $(am__append_11) $(am__append_12) $(am__append_13) $(am__append_14) $(am__append_15) $(am__append_16) $(am__append_17) $(am__append_18)
  libffi_convenience_la_SOURCES = $(libffi_la_SOURCES)
@@ -76,8 +75,8 @@
  libffi_la_LDFLAGS = -version-info `grep -v '^\#' $(srcdir)/libtool-version`
  AM_CPPFLAGS = -I. -I$(top_srcdir)/include -Iinclude -I$(top_srcdir)/src
  AM_CCASFLAGS = $(AM_CPPFLAGS)
---- gcc-4.0-20040919/libjava/Makefile.am.orig	2004-09-10 10:22:58.000000000 +0200
-+++ gcc-4.0-20040919/libjava/Makefile.am	2004-09-26 11:46:24.041082768 +0200
+--- a/libjava/Makefile.am	2004-09-10 10:22:58.000000000 +0200
++++ b/libjava/Makefile.am	2004-09-26 11:46:24.041082768 +0200
 @@ -179,7 +179,7 @@
  ## Extra CFLAGS used for JNI C sources shared with GNU Classpath.
  PEDANTIC_CFLAGS = -ansi -pedantic -Wall -Wno-long-long
@@ -87,8 +86,8 @@
  JC1FLAGS = @LIBGCJ_JAVAFLAGS@ $(GCJFLAGS)
  
  LIBFFIINCS = @LIBFFIINCS@
---- gcc-4.0-20040919/libjava/Makefile.in.orig	2004-09-19 19:47:04.000000000 +0200
-+++ gcc-4.0-20040919/libjava/Makefile.in	2004-09-26 11:47:02.431246576 +0200
+--- a/libjava/Makefile.in	2004-09-19 19:47:04.000000000 +0200
++++ b/libjava/Makefile.in	2004-09-26 11:47:02.431246576 +0200
 @@ -4167,7 +4167,7 @@
  @USING_GCC_FALSE@AM_CFLAGS = @LIBGCJ_CFLAGS@
  @USING_GCC_TRUE@AM_CFLAGS = @LIBGCJ_CFLAGS@ $(WARNINGS)
