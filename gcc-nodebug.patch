@@ -20,18 +20,18 @@
  LIBGCC2_CFLAGS = -O2 $(LIBGCC2_INCLUDES) $(GCC_CFLAGS) $(TARGET_LIBGCC2_CFLAGS) \
  		 $(LIBGCC2_DEBUG_CFLAGS) $(GTHREAD_FLAGS) \
  		 -DIN_LIBGCC2 -D__GCC_FLOAT_NOT_NEEDED \
---- a/gcc/ada/Makefile.in	2004-09-13 12:18:40.000000000 +0200
-+++ b/gcc/ada/Makefile.in	2004-09-26 11:40:30.070894416 +0200
-@@ -73,7 +73,7 @@
+--- a/gcc/ada/gcc-interface/Makefile.in	2004-09-13 12:18:40.000000000 +0200
++++ b/gcc/ada/gcc-interface/Makefile.in	2004-09-26 11:40:30.070894416 +0200
+@@ -66,7 +66,7 @@
+ # CFLAGS is for the user to override to, e.g., do a bootstrap with -O2.
+ # BOOT_CFLAGS is the value of CFLAGS to pass
  # to the stage2 and stage3 compilations
- # XCFLAGS is used for most compilations but not when using the GCC just built.
- XCFLAGS =
 -CFLAGS = -g
 +CFLAGS =
  BOOT_CFLAGS = -O $(CFLAGS)
- # These exists to be overridden by the x-* and t-* files, respectively.
- X_CFLAGS =
-@@ -118,9 +118,9 @@
+ # These exists to be overridden by the t-* files, respectively.
+ T_CFLAGS =
+@@ -102,9 +102,9 @@
  ADA_CFLAGS =
  ADAFLAGS = -W -Wall -gnatpg -gnata
  SOME_ADAFLAGS =-gnata
@@ -42,39 +42,47 @@
 +GNATLIBCFLAGS = -O2
  GNATLIBCFLAGS_FOR_C = $(GNATLIBCFLAGS) $(TARGET_LIBGCC2_CFLAGS) -fexceptions \
  	-DIN_RTS
- ALL_ADA_CFLAGS = $(X_ADA_CFLAGS) $(T_ADA_CFLAGS) $(ADA_CFLAGS)
+ ALL_ADAFLAGS = $(CFLAGS) $(ADA_CFLAGS) $(ADAFLAGS)
 --- a/libada/Makefile.in	2005-11-04 13:49:08.000000000 +0000
 +++ b/libada/Makefile.in	2005-11-24 23:52:14.739531296 +0000
-@@ -54,7 +54,6 @@
- include $(GCC_DIR)/libada-mk
+@@ -49,13 +49,13 @@
+ LDFLAGS=
+ 
+ # The tedious process of getting CFLAGS right.
+-CFLAGS=-g
++CFLAGS=
+ LOOSE_WARN = -W -Wall -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes
+ GCC_WARN_CFLAGS = $(LOOSE_WARN)
+ WARN_CFLAGS = @warn_cflags@
  
  TARGET_LIBGCC2_CFLAGS=
 -GNATLIBCFLAGS= -g -O2
- # Get target-specific overrides for TARGET_LIBGCC2_CFLAGS
- # and possibly GNATLIBCFLAGS.  Currently this uses files
- # in gcc/config.  The 'subst' call is used to rerelativize them
---- a/libffi/Makefile.am	2004-08-30 17:42:59.000000000 +0200
-+++ b/libffi/Makefile.am	2004-09-26 11:44:10.789340112 +0200
-@@ -138,7 +138,7 @@
- libffi_convenience_la_SOURCES = $(libffi_la_SOURCES)
- nodist_libffi_convenience_la_SOURCES = $(nodist_libffi_la_SOURCES)
++GNATLIBCFLAGS= -O2
  
--AM_CFLAGS = -Wall -g -fexceptions
-+AM_CFLAGS = -Wall -fexceptions
- 
- libffi_la_LDFLAGS = -version-info `grep -v '^\#' $(srcdir)/libtool-version`
- 
---- a/libffi/Makefile.in	2004-09-19 19:47:04.000000000 +0200
-+++ b/libffi/Makefile.in	2004-09-26 11:44:17.253357432 +0200
-@@ -385,7 +385,7 @@
- nodist_libffi_la_SOURCES = $(am__append_1) $(am__append_2) $(am__append_3) $(am__append_4) $(am__append_5) $(am__append_6) $(am__append_7) $(am__append_8) $(am__append_9) $(am__append_10) $(am__append_11) $(am__append_12) $(am__append_13) $(am__append_14) $(am__append_15) $(am__append_16) $(am__append_17) $(am__append_18)
+ # Get target-specific overrides for TARGET_LIBGCC2_CFLAGS.
+ host_subdir = @host_subdir@
+--- a/libffi/Makefile.in	2004-08-30 17:42:59.000000000 +0200
++++ b/libffi/Makefile.in	2004-09-26 11:44:10.789340112 +0200
+@@ -453,7 +453,7 @@
+ 	$(am__append_21) $(am__append_22)
  libffi_convenience_la_SOURCES = $(libffi_la_SOURCES)
  nodist_libffi_convenience_la_SOURCES = $(nodist_libffi_la_SOURCES)
 -AM_CFLAGS = -Wall -g -fexceptions
 +AM_CFLAGS = -Wall -fexceptions
- libffi_la_LDFLAGS = -version-info `grep -v '^\#' $(srcdir)/libtool-version`
+ LTLDFLAGS = $(shell $(SHELL) $(top_srcdir)/../libtool-ldflags $(LDFLAGS))
+ libffi_la_LDFLAGS = -version-info `grep -v '^\#' $(srcdir)/libtool-version` $(LTLDFLAGS)
  AM_CPPFLAGS = -I. -I$(top_srcdir)/include -Iinclude -I$(top_srcdir)/src
- AM_CCASFLAGS = $(AM_CPPFLAGS)
+--- a/libffi/Makefile.am	2008-05-09 12:10:53.000000000 +0200
++++ b/libffi/Makefile.am	2008-11-28 02:02:01.690063811 +0100
+@@ -154,7 +154,7 @@
+ libffi_convenience_la_SOURCES = $(libffi_la_SOURCES)
+ nodist_libffi_convenience_la_SOURCES = $(nodist_libffi_la_SOURCES)
+ 
+-AM_CFLAGS = -Wall -g -fexceptions
++AM_CFLAGS = -Wall -fexceptions
+ 
+ LTLDFLAGS = $(shell $(SHELL) $(top_srcdir)/../libtool-ldflags $(LDFLAGS))
+ 
 --- a/libjava/Makefile.am	2004-09-10 10:22:58.000000000 +0200
 +++ b/libjava/Makefile.am	2004-09-26 11:46:24.041082768 +0200
 @@ -179,7 +179,7 @@
